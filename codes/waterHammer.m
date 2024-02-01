@@ -17,10 +17,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % physikalische quantities
-g=9.80566; % [m/s²]
-Ef=2.1E9; % [N/m²]
-rho=1000; %[kg/m³]
-T=20; % [°C]
+g=9.80566; % [m/sÂ²]
+Ef=2.1E9; % [N/mÂ²]
+rho=1000; %[kg/mÂ³]
+T=20; % [Â°C]
 hAtm=10; % [mWs] atmospheric pressure head
 n=1.2; % [] modified kappa value, ratio of specific heat capacity at const. pressure vs. const. temperature 
 nue=csvread('kinViscosity.csv');
@@ -31,11 +31,11 @@ pD=interp1(pD(:,1),pD(:,2),T);
 
 % pipe
 L=6000; % [m]
-Er=2.1E11; % [N/m²] E-Modulus of the pipe
+Er=2.1E11; % [N/mÂ²] E-Modulus of the pipe
 hu=312; % [m]
 hd=298; % [m]
 d=.3; % [m]
-A=(d/2)^2*pi; % [m²]
+A=(d/2)^2*pi; % [mÂ²]
 ks=1E-3; % [m] equivalent sand roughness
 sumK=0; % [] sum of local losses WITHOUT outflow and valve loss
 w=0.008; % [m] wall thickness
@@ -58,13 +58,14 @@ course=input("piezometric head (piezo), water hammer only (only), pressure head 
 % course
 
 % valve
-A0=A; %.0356; % [m²] initial opening
+A0=A; %.0356; % [mÂ²] initial opening
 fname=sprintf('A0=A=%1.3f m2',A0);
 disp(fname);
 A0New=input('change A0? if yes type in flow area in m2: ');
 if isempty(A0New)==0
 	A0=A0New;
 end
+At=A0; % for steady-state conditions only
 mue=0.98; % [] discharge coefficient at valve 
 ts=30; % [s] closing time
 closingLaw=input('closing law linear/hyperbola: ','s'); %  closing law
@@ -110,7 +111,7 @@ end
 pos=find(o,2); % where is the valve?
 % where does anything happen?
 
-% Joukowsky-Stoß
+% Joukowsky-StoÃŸ
 maxh=a/g*v0;
 if 2*L/a>ts
     fname=sprintf('the Joukowsky peak takes place: maxh=%1.2f m\n',maxh);
@@ -119,12 +120,12 @@ else
     fname=sprintf('the Joukowsky peak (maxh=%1.2f m) does not take place.\n',maxh);
     disp(fname)
 end
-% Joukowsky-Stoß
+% Joukowsky-StoÃŸ
 
 % Initialisation
 kp=zeros(timesteps,nodes); 
 km=zeros(timesteps,nodes); 
-% kp für +Charakteristik,km für -Charakteristik
+% kp fÃ¼r +Charakteristik,km fÃ¼r -Charakteristik
 h=zeros(timesteps,nodes);
 v=zeros(timesteps,nodes);
 Je=zeros(timesteps,nodes);
