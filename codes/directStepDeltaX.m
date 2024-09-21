@@ -52,6 +52,6 @@ Rm=(Ar+Al)/(Pr+Pl);
 JEm=vm^2/kSt^2/Rm^(4/3);
 kl=vl^2/(2*g);
 kr=vr^2/(2*g);
-deltax=(yr+kr-yl-kl)/(JS-JEm);
+deltax=(yr+kr-yl-kl)/(JB-JEm);
 fname=sprintf('deltax = %1.3f', deltax);
 disp(fname);
