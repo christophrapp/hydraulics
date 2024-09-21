@@ -49,7 +49,7 @@ yK=input(fname);
 
 step=1;
 while step*dx<=L
-	yK=fsolve(@(y) directStepSolve(y,cs,csP,yK,Q,g,T,ks,n,JS,dx,toggle), yK);
+	yK=fsolve(@(y) directStepSolve(y,cs,csP,yK,Q,g,T,ks,n,JB,dx,toggle), yK);
 	step=step+1;
 end
 if strcmp(toggle,'SUB')
